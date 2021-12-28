@@ -246,7 +246,7 @@ impl Contract {
             let referrer_2_id = &referrer_account_1.referrer.clone();
             self.insert_affiliate_on_level(&referrer_1_id, referrer_account_1, 0, &account_id);
 
-            if self.owner_id != referrer_2_id {
+            if &self.owner_id != referrer_2_id {
                 if let Some(referrer_v_account_2) = self.accounts.get(referrer_2_id) {
                     let referrer_account_2: Account = referrer_v_account_2.into();
                     let referrer_3_id = &referrer_account_2.referrer.clone();
@@ -257,7 +257,7 @@ impl Contract {
                         &account_id,
                     );
 
-                    if self.owner_id != referrer_3_id {
+                    if &self.owner_id != referrer_3_id {
                         if let Some(referrer_v_account_3) = self.accounts.get(referrer_3_id) {
                             let referrer_account_3: Account = referrer_v_account_3.into();
                             self.insert_affiliate_on_level(
@@ -352,7 +352,6 @@ mod tests {
             claim_available: true,
             distribute_token_id: None,
             distribute_token_decimals: None,
-            distribute_supply_amount: None,
             min_buy: U128(100),
             max_buy: U128(10000),
             max_amount: max_amount.map(|a| U128(a)),
